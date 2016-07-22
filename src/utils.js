@@ -10,9 +10,9 @@ export function arrayMove (array, previousIndex, newIndex) {
 }
 
 export const events = {
-	start: ['touchstart', 'mousedown'],
-	move: ['touchmove', 'mousemove'],
-	end: ['touchend', 'mouseup']
+    start: ['dragstart'],
+    move: ['mousemove'],
+    end: ['mouseup']
 };
 
 export const vendorPrefix = (function () {

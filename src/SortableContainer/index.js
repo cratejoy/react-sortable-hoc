@@ -84,7 +84,7 @@ export default function SortableContainer(WrappedComponent, config = {withRef: f
 				if (useDragHandle && !closest(e.target, (el) => el.sortableHandle != null)) return;
 
 				this.manager.active = {index, collection};
-				this.pressTimer = setTimeout(() => this.handlePress(e), this.props.pressDelay);
+				this.handlePress(e);
 			}
 		};
 		cancel = (e) => {
