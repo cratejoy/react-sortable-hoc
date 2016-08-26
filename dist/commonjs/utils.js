@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.arrayMove = arrayMove;
 exports.closest = closest;
 exports.limit = limit;
+exports.getElementMargin = getElementMargin;
 function arrayMove(array, previousIndex, newIndex) {
     if (newIndex >= array.length) {
         var k = newIndex - array.length;
@@ -50,4 +51,22 @@ function limit(min, max, value) {
         return max;
     }
     return value;
+}
+
+function getCSSPixelValue(stringValue) {
+    if (stringValue.substr(-2) === 'px') {
+        return parseFloat(stringValue);
+    }
+    return 0;
+}
+
+function getElementMargin(element) {
+    var style = window.getComputedStyle(element);
+
+    return {
+        top: getCSSPixelValue(style.marginTop),
+        right: getCSSPixelValue(style.marginRight),
+        bottom: getCSSPixelValue(style.marginBottom),
+        left: getCSSPixelValue(style.marginLeft)
+    };
 }

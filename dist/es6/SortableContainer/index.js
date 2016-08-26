@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import Manager from '../Manager';
-import { closest, events, vendorPrefix, limit } from '../utils';
+import { closest, events, vendorPrefix, limit, getElementMargin } from '../utils';
 import invariant from 'invariant';
 
 // Export Higher Order Sortable Container Component
@@ -62,13 +62,16 @@ export default function SortableContainer(WrappedComponent) {
 					var collection = active.collection;
 
 					var index = node.sortableInfo.index;
+					var margin = getElementMargin(node);
 
 					var containerBoundingRect = _this.container.getBoundingClientRect();
 
 					_this.node = node;
+					_this.margin = margin;
 					_this.width = node.offsetWidth;
 					_this.height = node.offsetHeight;
 					_this.dimension = axis == 'x' ? _this.width : _this.height;
+					_this.dimensionWithMargins = axis === 'x' ? _this.width + _this.margin.left + _this.margin.right : _this.height + _this.margin.top + _this.margin.bottom;
 					_this.boundingClientRect = node.getBoundingClientRect();
 					_this.index = index;
 					_this.newIndex = index;
@@ -80,8 +83,8 @@ export default function SortableContainer(WrappedComponent) {
 
 					_this.helper = _this.document.body.appendChild(node.cloneNode(true));
 					_this.helper.style.position = 'fixed';
-					_this.helper.style.top = _this.boundingClientRect.top + 'px';
-					_this.helper.style.left = _this.boundingClientRect.left + 'px';
+					_this.helper.style.top = _this.boundingClientRect.top - margin.top + 'px';
+					_this.helper.style.left = _this.boundingClientRect.left - margin.left + 'px';
 					_this.helper.style.width = _this.width + 'px';
 
 					if (hideSortableGhost) {
@@ -421,10 +424,10 @@ export default function SortableContainer(WrappedComponent) {
 						node.style[vendorPrefix + 'TransitionDuration'] = transitionDuration + 'ms';
 					}
 					if (index > this.index && sortingOffset + offset >= edgeOffset) {
-						translate = -this.dimension;
+						translate = -this.dimensionWithMargins;
 						this.newIndex = index;
 					} else if (index < this.index && sortingOffset <= edgeOffset + offset) {
-						translate = this.dimension;
+						translate = this.dimensionWithMargins;
 
 						if (this.newIndex == null) {
 							this.newIndex = index;
