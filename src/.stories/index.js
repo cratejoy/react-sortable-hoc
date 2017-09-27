@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import {storiesOf} from '@kadira/storybook';
 import style from './Storybook.scss';
 import {SortableContainer, SortableElement, SortableHandle, arrayMove} from '../index';

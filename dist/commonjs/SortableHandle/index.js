@@ -32,7 +32,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function SortableHandle(WrappedComponent) {
     var _class, _temp;
 
-    var config = arguments.length <= 1 || arguments[1] === undefined ? { withRef: false } : arguments[1];
+    var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : { withRef: false };
 
     return _temp = _class = function (_Component) {
         _inherits(_class, _Component);
@@ -40,7 +40,7 @@ function SortableHandle(WrappedComponent) {
         function _class() {
             _classCallCheck(this, _class);
 
-            return _possibleConstructorReturn(this, Object.getPrototypeOf(_class).apply(this, arguments));
+            return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
         }
 
         _createClass(_class, [{

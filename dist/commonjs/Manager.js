@@ -40,7 +40,7 @@ var Manager = function () {
 	}, {
 		key: 'getOrderedRefs',
 		value: function getOrderedRefs() {
-			var collection = arguments.length <= 0 || arguments[0] === undefined ? this.active.collection : arguments[0];
+			var collection = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.active.collection;
 
 			return (0, _sortBy2.default)(this.refs[collection], function (_ref) {
 				var node = _ref.node;

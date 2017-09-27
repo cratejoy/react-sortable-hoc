@@ -12,6 +12,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 exports.default = SortableContainer;
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -44,7 +48,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function SortableContainer(WrappedComponent) {
 	var _class, _temp;
 
-	var config = arguments.length <= 1 || arguments[1] === undefined ? { withRef: false } : arguments[1];
+	var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : { withRef: false };
 
 	return _temp = _class = function (_Component) {
 		_inherits(_class, _Component);
@@ -52,7 +56,7 @@ function SortableContainer(WrappedComponent) {
 		function _class() {
 			_classCallCheck(this, _class);
 
-			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(_class).call(this));
+			var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this));
 
 			_this.state = {};
 
@@ -63,9 +67,9 @@ function SortableContainer(WrappedComponent) {
 
 				if (node && !_this.state.sorting && node.sortableInfo) {
 					var useDragHandle = _this.props.useDragHandle;
-					var _node$sortableInfo = node.sortableInfo;
-					var index = _node$sortableInfo.index;
-					var collection = _node$sortableInfo.collection;
+					var _node$sortableInfo = node.sortableInfo,
+					    index = _node$sortableInfo.index,
+					    collection = _node$sortableInfo.collection;
 
 
 					if (useDragHandle && !(0, _utils.closest)(e.target, function (el) {
@@ -88,14 +92,14 @@ function SortableContainer(WrappedComponent) {
 				var active = _this.manager.getActive();
 
 				if (active) {
-					var _this$props = _this.props;
-					var axis = _this$props.axis;
-					var onSortStart = _this$props.onSortStart;
-					var helperClass = _this$props.helperClass;
-					var hideSortableGhost = _this$props.hideSortableGhost;
-					var useWindowAsScrollContainer = _this$props.useWindowAsScrollContainer;
-					var node = active.node;
-					var collection = active.collection;
+					var _this$props = _this.props,
+					    axis = _this$props.axis,
+					    onSortStart = _this$props.onSortStart,
+					    helperClass = _this$props.helperClass,
+					    hideSortableGhost = _this$props.hideSortableGhost,
+					    useWindowAsScrollContainer = _this$props.useWindowAsScrollContainer;
+					var node = active.node,
+					    collection = active.collection;
 
 					var index = node.sortableInfo.index;
 					var margin = (0, _utils.getElementMargin)(node);
@@ -171,9 +175,9 @@ function SortableContainer(WrappedComponent) {
 			};
 
 			_this.handleSortEnd = function (e) {
-				var _this$props2 = _this.props;
-				var hideSortableGhost = _this$props2.hideSortableGhost;
-				var onSortEnd = _this$props2.onSortEnd;
+				var _this$props2 = _this.props,
+				    hideSortableGhost = _this$props2.hideSortableGhost,
+				    onSortEnd = _this$props2.onSortEnd;
 				var collection = _this.manager.active.collection;
 
 				// Remove the event listeners if the node is still in the DOM
@@ -314,7 +318,7 @@ function SortableContainer(WrappedComponent) {
 		}, {
 			key: 'getEdgeOffset',
 			value: function getEdgeOffset(edge, node) {
-				var offset = arguments.length <= 2 || arguments[2] === undefined ? 0 : arguments[2];
+				var offset = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
 
 				// Get the actual offsetTop / offsetLeft value, no matter how deep the node is nested
 				if (node) {
@@ -344,13 +348,10 @@ function SortableContainer(WrappedComponent) {
 				}
 				(0, _invariant2.default)(lockOffset.length === 2, 'lockOffset prop of SortableContainer should be a single ' + 'value or an array of exactly two values. Given %s', lockOffset);
 
-				var _lockOffset = lockOffset;
-
-				var _lockOffset2 = _slicedToArray(_lockOffset, 2);
-
-				var minLockOffset = _lockOffset2[0];
-				var maxLockOffset = _lockOffset2[1];
-
+				var _lockOffset = lockOffset,
+				    _lockOffset2 = _slicedToArray(_lockOffset, 2),
+				    minLockOffset = _lockOffset2[0],
+				    maxLockOffset = _lockOffset2[1];
 
 				return [this.getLockPixelOffset(minLockOffset), this.getLockPixelOffset(maxLockOffset)];
 			}
@@ -380,10 +381,10 @@ function SortableContainer(WrappedComponent) {
 		}, {
 			key: 'updatePosition',
 			value: function updatePosition(e) {
-				var _props = this.props;
-				var axis = _props.axis;
-				var lockAxis = _props.lockAxis;
-				var lockToContainerEdges = _props.lockToContainerEdges;
+				var _props = this.props,
+				    axis = _props.axis,
+				    lockAxis = _props.lockAxis,
+				    lockToContainerEdges = _props.lockToContainerEdges;
 
 				var offset = this.getOffset(e);
 				var translate = {
@@ -394,12 +395,10 @@ function SortableContainer(WrappedComponent) {
 				this.translate = translate[axis];
 
 				if (lockToContainerEdges) {
-					var _getLockPixelOffsets = this.getLockPixelOffsets();
-
-					var _getLockPixelOffsets2 = _slicedToArray(_getLockPixelOffsets, 2);
-
-					var minLockOffset = _getLockPixelOffsets2[0];
-					var maxLockOffset = _getLockPixelOffsets2[1];
+					var _getLockPixelOffsets = this.getLockPixelOffsets(),
+					    _getLockPixelOffsets2 = _slicedToArray(_getLockPixelOffsets, 2),
+					    minLockOffset = _getLockPixelOffsets2[0],
+					    maxLockOffset = _getLockPixelOffsets2[1];
 
 					var minOffset = this.dimension / 2 - minLockOffset;
 					var maxOffset = this.dimension / 2 - maxLockOffset;
@@ -421,10 +420,10 @@ function SortableContainer(WrappedComponent) {
 		}, {
 			key: 'animateNodes',
 			value: function animateNodes() {
-				var _props2 = this.props;
-				var axis = _props2.axis;
-				var transitionDuration = _props2.transitionDuration;
-				var hideSortableGhost = _props2.hideSortableGhost;
+				var _props2 = this.props,
+				    axis = _props2.axis,
+				    transitionDuration = _props2.transitionDuration,
+				    hideSortableGhost = _props2.hideSortableGhost;
 
 				var nodes = this.manager.getOrderedRefs();
 				var deltaScroll = this.scrollContainer['scroll' + this.edge] - this.initialScroll;
@@ -432,9 +431,9 @@ function SortableContainer(WrappedComponent) {
 				this.newIndex = null;
 
 				for (var i = 0, len = nodes.length; i < len; i++) {
-					var _nodes$i = nodes[i];
-					var node = _nodes$i.node;
-					var edgeOffset = _nodes$i.edgeOffset;
+					var _nodes$i = nodes[i],
+					    node = _nodes$i.node,
+					    edgeOffset = _nodes$i.edgeOffset;
 
 					var index = node.sortableInfo.index;
 					var dimension = axis == 'x' ? node.offsetWidth : node.offsetHeight;
@@ -508,21 +507,21 @@ function SortableContainer(WrappedComponent) {
 		lockToContainerEdges: false,
 		lockOffset: '50%'
 	}, _class.propTypes = {
-		axis: _react.PropTypes.string,
-		lockAxis: _react.PropTypes.string,
-		helperClass: _react.PropTypes.string,
-		transitionDuration: _react.PropTypes.number,
-		contentWindow: _react.PropTypes.any,
-		onSortStart: _react.PropTypes.func,
-		onSortMove: _react.PropTypes.func,
-		onSortEnd: _react.PropTypes.func,
-		pressDelay: _react.PropTypes.number,
-		useDragHandle: _react.PropTypes.bool,
-		useWindowAsScrollContainer: _react.PropTypes.bool,
-		hideSortableGhost: _react.PropTypes.bool,
-		lockToContainerEdges: _react.PropTypes.bool,
-		lockOffset: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string, _react.PropTypes.arrayOf(_react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]))])
+		axis: _propTypes2.default.string,
+		lockAxis: _propTypes2.default.string,
+		helperClass: _propTypes2.default.string,
+		transitionDuration: _propTypes2.default.number,
+		contentWindow: _propTypes2.default.any,
+		onSortStart: _propTypes2.default.func,
+		onSortMove: _propTypes2.default.func,
+		onSortEnd: _propTypes2.default.func,
+		pressDelay: _propTypes2.default.number,
+		useDragHandle: _propTypes2.default.bool,
+		useWindowAsScrollContainer: _propTypes2.default.bool,
+		hideSortableGhost: _propTypes2.default.bool,
+		lockToContainerEdges: _propTypes2.default.bool,
+		lockOffset: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string, _propTypes2.default.arrayOf(_propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]))])
 	}, _class.childContextTypes = {
-		manager: _react.PropTypes.object.isRequired
+		manager: _propTypes2.default.object.isRequired
 	}, _temp;
 }

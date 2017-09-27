@@ -10,6 +10,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 exports.default = SortableElement;
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -32,7 +36,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function SortableElement(WrappedComponent) {
     var _class, _temp;
 
-    var config = arguments.length <= 1 || arguments[1] === undefined ? { withRef: false } : arguments[1];
+    var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : { withRef: false };
 
     return _temp = _class = function (_Component) {
         _inherits(_class, _Component);
@@ -40,16 +44,16 @@ function SortableElement(WrappedComponent) {
         function _class() {
             _classCallCheck(this, _class);
 
-            return _possibleConstructorReturn(this, Object.getPrototypeOf(_class).apply(this, arguments));
+            return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
         }
 
         _createClass(_class, [{
             key: 'componentDidMount',
             value: function componentDidMount() {
-                var _props = this.props;
-                var collection = _props.collection;
-                var disabled = _props.disabled;
-                var index = _props.index;
+                var _props = this.props,
+                    collection = _props.collection,
+                    disabled = _props.disabled,
+                    index = _props.index;
 
 
                 if (!disabled) {
@@ -73,9 +77,9 @@ function SortableElement(WrappedComponent) {
         }, {
             key: 'componentWillUnmount',
             value: function componentWillUnmount() {
-                var _props2 = this.props;
-                var collection = _props2.collection;
-                var disabled = _props2.disabled;
+                var _props2 = this.props,
+                    collection = _props2.collection,
+                    disabled = _props2.disabled;
 
 
                 if (!disabled) this.context.manager.remove(collection, this.ref);
@@ -96,11 +100,11 @@ function SortableElement(WrappedComponent) {
 
         return _class;
     }(_react.Component), _class.displayName = WrappedComponent.displayName ? 'SortableElement(' + WrappedComponent.displayName + ')' : 'SortableElement', _class.WrappedComponent = WrappedComponent, _class.contextTypes = {
-        manager: _react.PropTypes.object.isRequired
+        manager: _propTypes2.default.object.isRequired
     }, _class.propTypes = {
-        index: _react.PropTypes.number.isRequired,
-        collection: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
-        disabled: _react.PropTypes.bool
+        index: _propTypes2.default.number.isRequired,
+        collection: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+        disabled: _propTypes2.default.bool
     }, _class.defaultProps = {
         collection: 0
     }, _temp;
