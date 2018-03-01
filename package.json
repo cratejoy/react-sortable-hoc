@@ -34,7 +34,7 @@
   ],
   "scripts": {
     "start": "node server.js",
-    "build": "npm run build:commonjs && npm run build:es6 && npm run build:umd",
+    "build": "npm run build:commonjs",
     "build:commonjs": "npm run clean:commonjs && cross-env BABEL_ENV=commonjs babel src --out-dir dist/commonjs --ignore *.example.js,*.test.js",
     "build:es6": "npm run clean:es6 && cross-env BABEL_ENV=es6 BABEL_DISABLE_CACHE=1 babel src --out-dir dist/es6 --ignore *.test.js",
     "build:umd": "cross-env NODE_ENV=production webpack --config webpack.config.umd.js && cross-env NODE_ENV=production webpack --config webpack.config.umd.js --minify",
