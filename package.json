@@ -1,13 +1,13 @@
 {
-  "name": "react-sortable-hoc-forked",
-  "version": "0.0.5",
+  "name": "@cratejoy/react-sortable-hoc",
+  "version": "0.0.6",
   "description": "Set of higher-order components to turn any list into a sortable, touch-friendly, animated list",
   "author": {
     "name": "Clauderic Demers",
     "email": "me@ced.io"
   },
   "user": "clauderic",
-  "homepage": "https://github.com/clauderic/react-sortable-hoc",
+  "homepage": "https://github.com/cratejoy/react-sortable-hoc",
   "main": "dist/commonjs/index.js",
   "jsnext:main": "dist/es6/index.js",
   "license": "MIT",
